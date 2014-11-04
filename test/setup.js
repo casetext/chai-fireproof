@@ -10,5 +10,5 @@ Fireproof.bless(Q);
 
 global.root = new Fireproof(new Firebase(process.env.FIREBASE_URL));
 
-global.expect = chai.expect;
 chai.use(require('../index'));
+global.expect = chai.expect;

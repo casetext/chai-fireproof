@@ -3,7 +3,12 @@ chai-fireproof
 
 Chai assertions and helpers for Firebase and Fireproof.
 
+## Requirements
+You need use both Firebase and [Fireproof](https://github.com/casetext/fireproof).
+
 ## Usage
+
+### Object assertions
 
 First load the plugin like any other Chai plugin:
 
@@ -12,7 +17,8 @@ chai.use(require('chai-fireproof'));
 ```
 
 Now you can create assertions on Fireproof objects like anything else.
-Note that these return promises that you'll have to pass back to your test framework.
+Note that these return promises that you'll have to pass back to your test framework
+or handle yourself.
 
 An example with Mocha:
 ```javascript
@@ -47,3 +53,45 @@ describe('My Firebase', function() {
 
 });
 ```
+
+### Security testing
+
+chai-fireproof includes test assertions for validating that security rules work
+the way they're supposed to. Note that these assertions return promises that
+you'll have to pass back to your test framework or handle yourself.
+
+Security testing has the following additional requirements:
+- firebaseio-demo.com is unsupported, as Firebase doesn't check rules there.
+- Call ```chai.setFirebaseAuthToken()``` with an auth token before you make any assertions.
+
+There are four new flags and one new method on assertions:
+- ```can```
+- ```cannot```
+- ```read```
+- ```write```
+- ```ref()```
+
+So you can write assertions that match the following syntax: 
+
+```javascript
+return expect({ uid: 'metropolis:maria' }).can.read.ref(root.child('users/maria'));
+```
+
+```javascript
+return expect({ uid: 'metropolis:robotmaria'}).cannot.read.ref(root.child('users/maria'));
+```
+
+The _expectation object_ (that's to say, the thing wrapped in the assertion) is a
+Javascript object with authentication credentials. For _write_ tests, you can supply
+an object to attempt to write to the ref (for testing validation rules et al.):
+
+```javascript
+return expect({ uid: 'metropolis:robotmaria'}).cannot.write(true)
+.to.ref(root.child('city/agitation'));
+```
+
+The following rules apply:
+- If the expectation object is ```null```, the assertion assumes you mean an unauthenticated user.
+- Every user object except ```null``` must supply a value for ```uid```.
+- To make a token an admin token, set ```admin: true```. Note that this definitionally will cause
+any test to pass.

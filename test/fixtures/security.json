@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "adminOnly": {
+      ".read": false,
+      ".write": false
+    },
+    "specificUser": {
+      ".read": "auth.uid == 'custom:1'",
+      ".write": "auth.uid == 'custom:1'"
+    },
+    "$else": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}

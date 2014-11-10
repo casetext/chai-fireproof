@@ -4,7 +4,7 @@ chai-fireproof
 Chai assertions and helpers for Firebase and Fireproof.
 
 ## Requirements
-You need use both Firebase and [Fireproof](https://github.com/casetext/fireproof).
+You need to be able to generate [Fireproof](https://github.com/casetext/fireproof) references.
 
 ## Usage
 

@@ -97,7 +97,10 @@ The following rules apply:
 any test to pass.
 
 
-### WARNING
+## Documentation
+There's API documentation [here.](https://github.com/casetext/chai-fireproof/blob/master/api.md).
+
+## Warning
 
 In order to capture annoying Firebase console messages, this library monkeypatches
 ```console.log()```, ```console.warn()```, and ```console.error()```. Your

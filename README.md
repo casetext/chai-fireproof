@@ -98,7 +98,7 @@ any test to pass.
 
 
 ## Documentation
-There's API documentation [here.](https://github.com/casetext/chai-fireproof/blob/master/api.md).
+There's API documentation [here.](https://github.com/casetext/chai-fireproof/blob/master/api.md)
 
 ## Warning
 

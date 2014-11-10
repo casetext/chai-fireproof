@@ -9,7 +9,9 @@
   "author": "Harry Schmidt <goldibex@casetext.com>",
   "license": "ISC",
   "peerDependencies": {
-    "chai": ">= 1.7.0 < 2"
+    "chai": ">= 1.7.0 < 2",
+    "firebase": "^1.1.2",
+    "fireproof": "^1.7.3"
   },
   "keywords": [
     "Fireproof",

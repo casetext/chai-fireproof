@@ -4,7 +4,12 @@
 describe('the "children" assertion', function() {
 
   before(function() {
-    return root.child('children').set({ a: 1, b: 2, c: 3});
+
+    return root.authWithCustomToken(authToken)
+    .then(function() {
+      return root.child('children').set({ a: 1, b: 2, c: 3});
+    });
+
   });
 
   it('is a synonym for "keys"', function() {

@@ -5,7 +5,12 @@ describe('for "a/an" assertions', function() {
 
 
   before(function() {
-    return root.child('a').set('foobar');
+
+    return root.authWithCustomToken(authToken)
+    .then(function() {
+      return root.child('a').set('foobar');
+    });
+
   });
 
 

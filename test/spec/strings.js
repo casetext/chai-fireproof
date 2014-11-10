@@ -5,8 +5,13 @@ describe('for string assertions', function() {
 
 
   before(function() {
-    return root.child('strings')
-    .set('I am the very model of the modern major general!');
+
+    return root.authWithCustomToken(authToken)
+    .then(function() {
+      return root.child('strings')
+      .set('I am the very model of the modern major general!');
+    });
+
   });
 
 

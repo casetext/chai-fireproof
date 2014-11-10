@@ -3,6 +3,9 @@
 
 describe('for equality assertions', function() {
 
+  before(function() {
+    return root.authWithCustomToken(authToken);
+  });
 
   it('resolves for correct assertions', function() {
 

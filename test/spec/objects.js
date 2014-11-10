@@ -6,10 +6,15 @@ describe('for object assertions', function() {
 
   before(function() {
 
-    return root.child('object').set({
-      foo: 9,
-      bar: { baz: '777' },
-      quux: [0, 1, 2]
+    return root.authWithCustomToken(authToken)
+    .then(function() {
+
+      return root.child('object').set({
+        foo: 9,
+        bar: { baz: '777' },
+        quux: [0, 1, 2]
+      });
+
     });
 
   });

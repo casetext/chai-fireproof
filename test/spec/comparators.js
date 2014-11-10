@@ -6,9 +6,14 @@ describe('for comparator assertions', function() {
 
   before(function() {
 
-    return root.child('comparisons').set({
-      'foo': 5,
-      'bar': 9.5
+    return root.authWithCustomToken(authToken)
+    .then(function() {
+
+      return root.child('comparisons').set({
+        'foo': 5,
+        'bar': 9.5
+      });
+
     });
 
   });

@@ -5,10 +5,15 @@ describe('for existential assertions', function() {
 
   before(function() {
 
-    return root.child('existential').setWithPriority({
-      yes: true,
-      no: false
-    }, 7);
+    return root.authWithCustomToken(authToken)
+    .then(function() {
+
+      return root.child('existential').setWithPriority({
+        yes: true,
+        no: false
+      }, 7);
+
+    });
 
   });
 

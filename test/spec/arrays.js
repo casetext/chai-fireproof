@@ -5,7 +5,12 @@ describe('for array assertions', function() {
 
 
   before(function() {
-    return root.child('arrays').set(['a', 'b', 'c']);
+
+    return root.authWithCustomToken(authToken)
+    .then(function() {
+      return root.child('arrays').set(['a', 'b', 'c']);
+    });
+
   });
 
 

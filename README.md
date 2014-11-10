@@ -1,7 +1,7 @@
 chai-fireproof
 ==============
 
-Chai assertions for Fireproof promises.
+Chai assertions and helpers for Firebase and Fireproof.
 
 ## Usage
 
@@ -16,17 +16,34 @@ Note that these return promises that you'll have to pass back to your test frame
 
 An example with Mocha:
 ```javascript
+describe('My Firebase', function() {
+  
+  var root = new Fireproof(new Firebase('https://metropolis.firebaseio.com'));
 
-it('handles equality expectations correctly', function() {
-
-  return expect(root.child('something')).to.equal({
-    an: 'object';
+  it('should have some data in there already', function() {
+    return expect(root.child('robots')).to.exist;
   });
 
-});
+  it('should have some users in there', function() {
 
-it('handles greaterThan expectations correctly', function() {
-  return expect(root.child('userCount')).to.be.above(8);
-});
+    return expect(root.child('citizens')).to.deep.equal({
+      fred: {
+        name: 'Freder Frederson',
+        hometown: 'Metropolis',
+        assignment: 'Utopia'
+      },
+      maria: {
+        name: 'Maria',
+        hometown: 'Metropolis',
+        assignment: 'Underworld'
+      }
+    });
 
+  });
+
+  it('should have the water level in there', function() {
+    return expect(root.child('waterLevel')).to.be.lessThan(5);
+  })
+
+});
 ```

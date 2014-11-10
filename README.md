@@ -95,3 +95,10 @@ The following rules apply:
 - Every user object except ```null``` must supply a value for ```uid```.
 - To make a token an admin token, set ```admin: true```. Note that this definitionally will cause
 any test to pass.
+
+
+### WARNING
+
+In order to capture annoying Firebase console messages, this library monkeypatches
+```console.log()```, ```console.warn()```, and ```console.error()```. Your
+mileage may vary, void where prohibited by law.

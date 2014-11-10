@@ -1,4 +1,7 @@
 
+/** @namespace chai */
+/** @class chai.Assertion */
+
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {

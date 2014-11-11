@@ -1,9 +1,9 @@
 
 'use strict';
 
-describe('for security rules', function(done) {
+describe('for security rules', function() {
 
-  before(function() {
+  before(function(done) {
 
     // upload some new security rules
     root.authWithCustomToken(authToken)

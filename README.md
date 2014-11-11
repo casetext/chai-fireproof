@@ -1,6 +1,8 @@
 chai-fireproof
 ==============
 
+[![Build Status](https://travis-ci.org/casetext/chai-fireproof.svg?branch=master)](https://travis-ci.org/casetext/chai-fireproof)
+
 Chai assertions and helpers for Firebase and Fireproof.
 
 ## Requirements
@@ -11,6 +13,28 @@ You need to be able to generate [Fireproof](https://github.com/casetext/fireproo
 ### Object assertions
 
 First load the plugin like any other Chai plugin:
+gulp.task('test:setup', 'Set up tests.', ['build'], function() {
+
+
+  var Firebase = require('firebase'),
+    chai = require('chai');
+
+  require('./dist/chai-fireproof');
+  global.chai = chai;
+  global.expect = chai.expect;
+
+  if (!process.env.FIREBASE_TEST_URL || !process.env.FIREBASE_TEST_SECRET) {
+
+    gutil.log('Please set FIREBASE_TEST_URL and FIREBASE_TEST_SECRET.');
+    process.exit(1);
+
+  }
+
+  global.root = new Fireproof(new Firebase(process.env.FIREBASE_TEST_URL));
+  global.authToken = process.env.FIREBASE_TEST_SECRET;
+
+});
+
 
 ```javascript
 chai.use(require('chai-fireproof'));

@@ -52,7 +52,11 @@
   
         var message = '';
         for (var i = 0; i < arguments.length; i++) {
-          message += arguments[i].toString();
+  
+          if (arguments[i] !== null && arguments[i] !== undefined) {
+            message += arguments[i].toString();
+          }
+  
         }
   
         if (message.match(/^FIREBASE.*?: /)) {
@@ -439,7 +443,7 @@
             utils.flag(self, 'positivity') === true,
             'Expected ' + (user ? user.uid : 'an unauthenticated user') +
               ' not to be able to ' + operation +
-              (data ? JSON.stringify(data, undefined, 2) : '') +
+              (data ? ' ' + JSON.stringify(data, undefined, 2) : '') +
               ' at ref ' + ref.toString() +
               ', but Firebase allowed it. Debug info:\n' + info,
             ''
@@ -462,7 +466,7 @@
             utils.flag(self, 'positivity') === false,
             'Expected ' + (user ? user.uid : 'an unauthenticated user') +
               ' to be able to ' + operation +
-              (data ? JSON.stringify(data, undefined, 2) : '') +
+              (data ? ' ' + JSON.stringify(data, undefined, 2) : '') +
               ' at ref ' + ref.toString() +
               ', but received error:\n "' + err.message + '". Debug info:\n' +
               info,

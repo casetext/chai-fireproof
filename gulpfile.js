@@ -21,21 +21,17 @@ Fireproof.bless(require('q'));
 
 function npmPublish(done) {
 
-  return function() {
+  var spawn = require('child_process').spawn;
 
-    var spawn = require('child_process').spawn;
-
-    spawn('npm', ['publish'], { stdio: 'inherit' })
-    .on('error', done)
-    .on('close', done);
-
-  };
+  spawn('npm', ['publish'], { stdio: 'inherit' })
+  .on('error', done)
+  .on('close', done);
 
 }
 
 function inc(importance, done) {
 
-  return gulp.src(['./package.json'])
+  gulp.src(['./package.json'])
   .pipe(bump({type: importance}))
   .pipe(gulp.dest('./'))
   .pipe(git.commit('new release'))
@@ -43,7 +39,7 @@ function inc(importance, done) {
   .pipe(tagVersion())
   .on('end', function() {
 
-    git.push('origin', 'master', function(err) {
+    git.push('origin', 'master', { args: ' --tags'}, function(err) {
       if (err) {
         throw err;
       }
@@ -129,19 +125,17 @@ gulp.task('test', 'Runs tests and exits.', ['test:setup'], function() {
 
 });
 
-var bumpDeps = ['test'];
-
-gulp.task('bump', 'Publishes a new bugfix version.', bumpDeps, function(done) {
+gulp.task('bump', 'Publishes a new bugfix version.', function(done) {
   inc('patch', done);
 });
 
 
-gulp.task('bump:minor', 'Publishes a new minor version.', bumpDeps, function(done) {
+gulp.task('bump:minor', 'Publishes a new minor version.', function(done) {
   inc('minor', done);
 });
 
 
-gulp.task('bump:major', 'Publishes a new major version.', bumpDeps, function(done) {
+gulp.task('bump:major', 'Publishes a new major version.', function(done) {
   inc('major', done);
 });
 

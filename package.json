@@ -1,6 +1,6 @@
 {
   "name": "chai-fireproof",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Firebase and Fireproof support for the Chai assertion library.",
   "main": "dist/chai-fireproof.js",
   "scripts": {

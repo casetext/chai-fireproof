@@ -6,6 +6,10 @@
   "scripts": {
     "test": "node_modules/.bin/gulp test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/casetext/chai-fireproof"
+  },
   "author": "Harry Schmidt <goldibex@casetext.com>",
   "license": "MIT",
   "peerDependencies": {
